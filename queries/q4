@@ -1,0 +1,7 @@
+-- Q: How many Airbnb listings are in Lincoln Park?
+
+SELECT COUNT(*) AS listing_count
+FROM listings
+WHERE neighborhood = 'Lincoln Park';
+
+-- verdict: trust. Because the query counts every listing whose neighborhood is Lincoln Park.

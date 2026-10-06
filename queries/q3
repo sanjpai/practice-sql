@@ -1,0 +1,8 @@
+-- Q: What is the most recent review?
+
+SELECT id, listing_id, date_reviewed, reviewer_name
+FROM reviews
+ORDER BY date_reviewed DESC
+LIMIT 1;
+
+-- verdict: trust. Because the query sorts reviews from newest to oldest and returns the newest one.

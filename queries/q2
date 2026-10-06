@@ -1,0 +1,10 @@
+-- Q: Which individual host, a person rather than a company, has the most listings?
+
+SELECT host_name, COUNT(*) AS listing_count
+FROM listings
+WHERE host_name IS NOT NULL
+GROUP BY host_name
+ORDER BY listing_count DESC
+LIMIT 20;
+
+-- verdict: trust. Because the query counts the listings associated with each host name and ranks them from most to least.

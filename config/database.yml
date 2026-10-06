@@ -1,0 +1,17 @@
+# The baseball database is a committed file, db/airbnb.sqlite3.
+# If anything damages it: git checkout db/airbnb.sqlite3
+default: &default
+  adapter: sqlite3
+  max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  # One file, no side files, so git checkout restores everything at once.
+  pragmas:
+    journal_mode: delete
+
+development:
+  <<: *default
+  database: db/airbnb.sqlite3
+
+test:
+  <<: *default
+  database: storage/test.sqlite3

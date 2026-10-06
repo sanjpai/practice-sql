@@ -1,0 +1,9 @@
+<% content_for :title, "Run SQL" %>
+
+<h1 class="text-2xl font-bold mb-1">Run SQL</h1>
+<p class="text-sm text-stone-600 mb-6">
+  Type or paste any SQL and run it. Your saved files in <code>queries/</code> are on the
+  <%= link_to "Queries", queries_path, class: "underline" %> page.
+</p>
+
+<%= render "form", query: nil %>

@@ -1,0 +1,31 @@
+<% content_for :title, "Queries" %>
+
+<h1 class="text-2xl font-bold mb-1">Queries</h1>
+<p class="text-sm text-stone-600 mb-6">
+  Every file in <code>queries/</code>, in filename order, run fresh each time you refresh.
+  These files can only read the data; to change it, use <%= link_to "Run SQL", root_path, class: "underline" %>.
+</p>
+
+<% if @query_files.empty? %>
+  <p class="text-stone-600 mb-8">No files in <code>queries/</code> yet.</p>
+<% end %>
+
+<% @query_files.each do |file| %>
+  <section class="mb-10 border border-stone-300 rounded-lg bg-white overflow-hidden">
+    <header class="px-4 py-3 border-b border-stone-200">
+      <p class="text-xs text-stone-500"><%= file.name %></p>
+      <h2 class="text-lg font-semibold"><%= file.question || "(no -- Q: line at the top of this file)" %></h2>
+    </header>
+    <pre class="px-4 py-3 text-sm bg-stone-100 whitespace-pre-wrap"><%= file.sql %></pre>
+    <%# The verdict is the student's judgment, not the chat's, so it says so. %>
+    <% if file.verdict %>
+      <p class="px-4 py-3 bg-amber-100 border-y border-amber-300 font-medium">Your verdict: <%= file.verdict %></p>
+    <% else %>
+      <p class="px-4 py-3 border-y border-dashed border-stone-300 text-sm text-stone-500">
+        No verdict yet. Add it as the last line of the file:
+        <code class="text-stone-700">-- verdict: trust. Because ...</code> or <code class="text-stone-700">-- verdict: don't trust. Because ...</code>
+      </p>
+    <% end %>
+    <div class="p-4"><%= render "result", query: file.query %></div>
+  </section>
+<% end %>
